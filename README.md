@@ -11,7 +11,6 @@ slechte installatie en uitleg.
 # 1.2 Bedrijf:
 Minimalistisch? 
 
-
 # 2.0 ASP.
 # 2.1 Personelijk:
 Minimale command promt commando’s 
