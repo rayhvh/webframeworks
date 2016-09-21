@@ -93,9 +93,6 @@ D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\bin\roslyn\
 D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\bin\roslyn\vbc.exe
 D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\bin\roslyn\VBCSCompiler.exe
 D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\bin\roslyn\VBCSCompiler.exe.config
-D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\bin\WebApplication1.dll.config
-D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\bin\WebApplication1.dll
-D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\bin\WebApplication1.pdb
 D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\bin\Antlr3.Runtime.dll
 D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\bin\EntityFramework.dll
 D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\bin\EntityFramework.SqlServer.dll
@@ -160,5 +157,8 @@ D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\bin\Microso
 D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\obj\Debug\WebApplication1.csprojResolveAssemblyReference.cache
-D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\obj\Debug\WebApplication1.dll
-D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\obj\Debug\WebApplication1.pdb
+D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\bin\Smoelenboek.dll.config
+D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\bin\Smoelenboek.dll
+D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\bin\Smoelenboek.pdb
+D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\obj\Debug\Smoelenboek.dll
+D:\Dropbox\School\programmeren\webframeworks\asp.net\WebApplication1\obj\Debug\Smoelenboek.pdb
