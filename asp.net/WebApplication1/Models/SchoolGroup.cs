@@ -9,5 +9,8 @@ namespace Smoelenboek.Models
     {
         public int ID { get; set; }
         public string GroupName { get; set; }
+        public virtual List<Student> Student { get; set; } //virtual?
+        public virtual List<Teacher> Teacher { get; set; }
+
     }
 }
