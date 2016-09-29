@@ -7,10 +7,10 @@ namespace Smoelenboek.Models
 {
     public class SchoolGroup
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string GroupName { get; set; }
-        public virtual List<Student> Student { get; set; } //virtual?
-        public virtual List<Teacher> Teacher { get; set; }
+        public virtual ICollection<Student> Students { get; set; } //virtual?
+        public virtual ICollection<Teacher> Teachers { get; set; }
 
     }
 }

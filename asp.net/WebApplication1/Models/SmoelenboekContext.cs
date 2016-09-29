@@ -17,6 +17,7 @@ namespace Smoelenboek.Models
     
         public SmoelenboekContext() : base("name=SmoelenboekContext")
         {
+
         }
 
         public System.Data.Entity.DbSet<Smoelenboek.Models.SchoolGroup> SchoolGroups { get; set; }

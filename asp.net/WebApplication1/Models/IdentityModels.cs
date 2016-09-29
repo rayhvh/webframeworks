@@ -17,7 +17,7 @@ namespace WebApplication1.Models
             return userIdentity;
         }
     }
-
+/*
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -29,5 +29,5 @@ namespace WebApplication1.Models
         {
             return new ApplicationDbContext();
         }
-    }
+    }*/
 }

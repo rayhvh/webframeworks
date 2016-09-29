@@ -244,3 +244,7 @@ D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\bin\Microsoft.Owin.Se
 D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\WebApplication1.csprojResolveAssemblyReference.cache
 D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\Smoelenboek.dll
 D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\Smoelenboek.pdb
+D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\Smoelenboek.Migrations.InitialCreate.resources
+D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\WebApplication1.csproj.GenerateResource.Cache
+D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\Smoelenboek.Migrations.initial.resources
+D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\Smoelenboek.Migrations.foreignkey_student.resources

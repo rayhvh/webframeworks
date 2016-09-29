@@ -17,7 +17,8 @@ namespace Smoelenboek.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            return View(db.Students.ToList());
+            var students = db.Students.Include(s => s.SchoolGroup);
+            return View(students.ToList());
         }
 
         // GET: Students/Details/5
@@ -38,6 +39,7 @@ namespace Smoelenboek.Controllers
         // GET: Students/Create
         public ActionResult Create()
         {
+            ViewBag.SchoolGroupId = new SelectList(db.SchoolGroups, "Id", "GroupName");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace Smoelenboek.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,LastName,FirstMidName,Hobby,PictureURL")] Student student)
+        public ActionResult Create([Bind(Include = "Id,LastName,FirstMidName,SchoolGroupId,Hobby,PictureURL")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace Smoelenboek.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.SchoolGroupId = new SelectList(db.SchoolGroups, "Id", "GroupName", student.SchoolGroupId);
             return View(student);
         }
 
@@ -70,6 +73,7 @@ namespace Smoelenboek.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.SchoolGroupId = new SelectList(db.SchoolGroups, "Id", "GroupName", student.SchoolGroupId);
             return View(student);
         }
 
@@ -78,7 +82,7 @@ namespace Smoelenboek.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,LastName,FirstMidName,Hobby,PictureURL")] Student student)
+        public ActionResult Edit([Bind(Include = "Id,LastName,FirstMidName,SchoolGroupId,Hobby,PictureURL")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace Smoelenboek.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.SchoolGroupId = new SelectList(db.SchoolGroups, "Id", "GroupName", student.SchoolGroupId);
             return View(student);
         }
 
