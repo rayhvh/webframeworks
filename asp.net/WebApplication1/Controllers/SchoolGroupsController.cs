@@ -46,7 +46,7 @@ namespace Smoelenboek.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,GroupName")] SchoolGroup schoolGroup)
+        public ActionResult Create([Bind(Include = "Id,GroupName")] SchoolGroup schoolGroup)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Smoelenboek.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,GroupName")] SchoolGroup schoolGroup)
+        public ActionResult Edit([Bind(Include = "Id,GroupName")] SchoolGroup schoolGroup)
         {
             if (ModelState.IsValid)
             {
