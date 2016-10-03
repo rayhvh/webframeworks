@@ -38,6 +38,9 @@ namespace Smoelenboek.Controllers
         // GET: Teachers/Create
         public ActionResult Create()
         {
+            ViewBag.SchoolGroupId = new SelectList(db.SchoolGroups, "Id", "GroupName");
+
+            ViewBag.AllGroups = db.SchoolGroups.ToList();
             return View();
         }
 
@@ -46,7 +49,7 @@ namespace Smoelenboek.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,LastName,FirstMidName,Hobby,PictureURL")] Teacher teacher)
+        public ActionResult Create( Teacher teacher)
         {
             if (ModelState.IsValid)
             {
@@ -54,7 +57,8 @@ namespace Smoelenboek.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            // zorgt vooor t opslaan van een nieuwe teacher en als je een groep aanvinkt die bij deze teacher hoort lijkt het nu nog alsof die een nieuwe lege groep aanmaakt. waarbij enige
+            //ingevulde waarde de teacher zn naam is.  check de database of de update bij een klas goed is of dat er een nieuwe bij zit.
             return View(teacher);
         }
 
