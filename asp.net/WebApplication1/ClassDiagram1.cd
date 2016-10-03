@@ -11,7 +11,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Smoelenboek.Models.Teacher">
-    <Position X="7.25" Y="1.5" Width="1.5" />
+    <Position X="7.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAEAAAAAQAAAAAAAQAAAAAAAAgAAg=</HashCode>
       <FileName>Models\Teacher.cs</FileName>

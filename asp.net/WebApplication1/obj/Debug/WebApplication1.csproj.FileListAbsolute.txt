@@ -248,3 +248,4 @@ D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\Smoelenboek
 D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\WebApplication1.csproj.GenerateResource.Cache
 D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\Smoelenboek.Migrations.initial.resources
 D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\Smoelenboek.Migrations.foreignkey_student.resources
+D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\Smoelenboek.Migrations.requiredmodels.resources

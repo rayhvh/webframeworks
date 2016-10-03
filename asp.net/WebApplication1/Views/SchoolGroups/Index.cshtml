@@ -14,6 +14,8 @@
         <th>
             @Html.DisplayNameFor(model => model.GroupName)
         </th>
+        <th>Students</th>
+        <th>Teachers</th>
         <th></th>
     </tr>
 
@@ -23,10 +25,26 @@
             @Html.DisplayFor(modelItem => item.GroupName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @foreach (var student in item.Students)
+            {
+                @Html.DisplayFor(modelItem => student.FirstMidName)
+            @:,
+            }
         </td>
+
+        <td>
+            @foreach (var teacher in item.Teachers)
+            {
+                @Html.DisplayFor(modelItem => teacher.FirstMidName)
+                @:,
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+               
     </tr>
 }
 
