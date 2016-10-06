@@ -47,20 +47,22 @@
         </div>
         <!--oproepen een lijst met mogelijk klassen in een meer naar meer relatie en deze ook zo opslaan-->
         <div class="form-group">
-            @Html.LabelFor(model => model.SchoolGroups, "SchoolGroup", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SchoolGroups, "SchoolGroup", htmlAttributes: new { @class = "control-label col-md-2" })  <!-- gebruikt schoolgroep modelen haalt naam eruit? label-->
             <div class="col-md-10">
             
                 @{ var i = 0; }
-                @foreach (var group in ViewBag.AllGroups as IEnumerable<SchoolGroup>)
+                @foreach (var group in ViewBag.AllGroups as IEnumerable<SchoolGroup>) 
                 {
+                    // gebruikt viewbag allgroeps defineerd als schoolgroepen en  name is schoolgroep id. waarde is groeps idee. en html is groep naam. 
 
+                    <label> 
+               
+                <input type="checkbox" name="SchoolGroupIds" value="@group.Id" /> @group.GroupName
 
-                    <label> <input type="checkbox" name="SchoolGroups[@(i++)].Id" value="@group.Id" /> @group.GroupName </label> <br />
-
+                        @*<input type="hidden" name="SchoolGroups[@(i++)].Id" value="@group.Id" />*@
+                 </label> <br />
                 }
 
-
-               
             </div>
         </div>
 

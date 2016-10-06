@@ -38,9 +38,9 @@ namespace Smoelenboek.Controllers
         // GET: Teachers/Create
         public ActionResult Create()
         {
-            ViewBag.SchoolGroupId = new SelectList(db.SchoolGroups, "Id", "GroupName");
+            ViewBag.SchoolGroupId = new SelectList(db.SchoolGroups, "Id", "GroupName"); // schoolgroep id is een lijst van schoolgroepen uit db met id en naam
 
-            ViewBag.AllGroups = db.SchoolGroups.ToList();
+            ViewBag.AllGroups = db.SchoolGroups.ToList(); // alle groepen is schoolgroepenen uit db naar lijst.. compleet?
             return View();
         }
 
@@ -49,10 +49,18 @@ namespace Smoelenboek.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( Teacher teacher)
+        public ActionResult Create( Teacher teacher, List<int> schoolgroupIds) // haal post schoolgroupids op lees name="SchoolGroupIds" value="@group.Id" array. 
         {
             if (ModelState.IsValid)
             {
+               teacher.SchoolGroups = new List<SchoolGroup>(); // teacher.schoolgroups is nog leeg. hier maken we  de NULL naar een lege array. 
+                foreach(var group in schoolgroupIds) // voor elke 'groep' in de post schoolgroupids. 
+                {
+                    var dbGroup = db.SchoolGroups.Find(group); // maak lege waarde dbgroep aan. en vul deze met een groep die je vind op basis van ID uit loop. uit de post.
+                    teacher.SchoolGroups.Add(dbGroup); // vul nu of voeg nu deze gevonden groep toe aan de net gemaakte array in leraar model. 
+                }
+
+
                 db.Teachers.Add(teacher);
                 db.SaveChanges();
                 return RedirectToAction("Index");
