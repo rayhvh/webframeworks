@@ -11,9 +11,9 @@ namespace Smoelenboek.Models
         public int Id { get; set; }
         public string GroupName { get; set; }
       //  [Required]
-        public virtual ICollection<Student> Students { get; set; } //virtual?
+        public  ICollection<Student> Students { get; set; } //virtual uitzetten voor eager loading ipv lazy loading.
        // [Required]
-        public virtual ICollection<Teacher> Teachers { get; set; }
+        public   ICollection<Teacher> Teachers { get; set; }
 
     }
 }

@@ -17,7 +17,10 @@ namespace Smoelenboek.Controllers
         // GET: SchoolGroups
         public ActionResult Index()
         {
-            return View(db.SchoolGroups.ToList());
+            return View(db.SchoolGroups
+               .Include(gs => gs.Students) // lazy load staat uit door virtual / config. include nu complete students en teacher data? 
+               .Include(gt => gt.Teachers)
+                .ToList());
         }
 
         // GET: SchoolGroups/Details/5

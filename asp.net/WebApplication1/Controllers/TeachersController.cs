@@ -17,6 +17,7 @@ namespace Smoelenboek.Controllers
         // GET: Teachers
         public ActionResult Index()
         {
+            // afvangen van rechten???? daarop view aanpassen? login systeem? 
             return View(db.Teachers.ToList());
         }
 
@@ -65,8 +66,7 @@ namespace Smoelenboek.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            // zorgt vooor t opslaan van een nieuwe teacher en als je een groep aanvinkt die bij deze teacher hoort lijkt het nu nog alsof die een nieuwe lege groep aanmaakt. waarbij enige
-            //ingevulde waarde de teacher zn naam is.  check de database of de update bij een klas goed is of dat er een nieuwe bij zit.
+            
             return View(teacher);
         }
 

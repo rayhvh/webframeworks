@@ -17,7 +17,7 @@ namespace Smoelenboek.Models
     
         public SmoelenboekContext() : base("name=SmoelenboekContext")
         {
-
+           Configuration.LazyLoadingEnabled = false;
         }
 
         public System.Data.Entity.DbSet<Smoelenboek.Models.SchoolGroup> SchoolGroups { get; set; }
