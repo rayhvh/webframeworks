@@ -249,3 +249,4 @@ D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\WebApplicat
 D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\Smoelenboek.Migrations.initial.resources
 D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\Smoelenboek.Migrations.foreignkey_student.resources
 D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\Smoelenboek.Migrations.requiredmodels.resources
+D:\Documenten\GitHub\webframeworks\asp.net\WebApplication1\obj\Debug\Smoelenboek.Migrations.passwords.resources

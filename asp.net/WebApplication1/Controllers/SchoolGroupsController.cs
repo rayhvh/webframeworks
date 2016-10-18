@@ -35,6 +35,7 @@ namespace Smoelenboek.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.StudentName = db.Students;
             return View(schoolGroup);
         }
 

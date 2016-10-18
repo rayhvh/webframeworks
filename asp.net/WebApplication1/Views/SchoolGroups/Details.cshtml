@@ -1,7 +1,11 @@
 ﻿@model Smoelenboek.Models.SchoolGroup
 
+
+
+
 @{
     ViewBag.Title = "Details";
+   
 }
 
 <h2>Details</h2>
@@ -17,8 +21,24 @@
         <dd>
             @Html.DisplayFor(model => model.GroupName)
         </dd>
+       
+        <dt>
+            Je groep bevat:
+        </dt>
+@foreach (var item in ViewBag.StudentName)
+{
 
-    </dl>
+        @(item.GroupName == @Html.DisplayFor(model => model.GroupName))
+        {
+            <dd>
+                @(item.FirstMidName)
+                }
+                @* Wat de fuck.... hoe fix ik dat ik studenten krijg die bij een groep horen hier. *@
+            </dd>
+        }
+}
+
+</dl>
 </div>
 <p>
     @Html.ActionLink("Bewerken", "Edit", new { id = Model.Id }) |

@@ -16,6 +16,7 @@ namespace Smoelenboek.Models
         [Required]
         public string FirstMidName { get; set; }
 
+        public string Password { get; set; }
 
         public int SchoolGroupId { get; set; }
      //   [Required]
