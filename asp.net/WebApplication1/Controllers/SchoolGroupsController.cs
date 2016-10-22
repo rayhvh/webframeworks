@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Smoelenboek.Models;
+using Smoelenboek.App_Logic;
 
 namespace Smoelenboek.Controllers
 {
+    [AuthorizeUser]
     public class SchoolGroupsController : Controller
     {
         private SmoelenboekContext db = new SmoelenboekContext();

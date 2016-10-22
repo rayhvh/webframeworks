@@ -55,7 +55,7 @@ namespace AuthenticationTest.Controllers
 
                 // optional: set something in the session to determine different roles (e.g. administrator or user).
                 Session["Role"] = "Student";
-                return RedirectToAction("Index", "Student");
+                return RedirectToAction("Index", "Students");
             }
 
             var ingelogteteacher = db.Teachers.Where(u => u.FirstMidName == data.Username && u.Password == data.Password);
@@ -63,7 +63,7 @@ namespace AuthenticationTest.Controllers
             {
                 FormsAuthentication.SetAuthCookie(data.Username, true);
                 Session["Role"] = "Teacher";
-                return RedirectToAction("Index", "Teacher");
+                return RedirectToAction("Index", "Teachers");
             }
 
             else
