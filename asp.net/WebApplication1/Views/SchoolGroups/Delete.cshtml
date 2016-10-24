@@ -18,20 +18,48 @@
         <dd>
             @Html.DisplayFor(model => model.GroupName)
         </dd>
+        <dt>
+            Je groep bevat:
+        </dt>
+        @foreach (var item in Model.Students)
+        {
+            <dd>
+                Student:   @(item.FirstMidName)
+            </dd>
+        }
+        @foreach (var item in Model.Teachers)
+        {
+            <dd>
+                Docent:    @(item.FirstMidName)
+            </dd>
+        }
 
     </dl>
+@if (Session["Role"].Equals("Teacher"))
+{
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Verwijderen" class="btn btn-default" />
-@* laten zien dat groep nog niet leeg is. niet kan verwijderen*@
-
-            @*@Model.Teachers.Count*@
-
-
-            @Html.ActionLink("Terug", "Index")
-        </div>
+    if (Model.Teachers.Count != 0 | Model.Students.Count != 0)
+    {
+        @Html.Raw("Zorg dat er geen leraren of leerlingen in de klas zitten voordat je hem probeerd te verwijderen!")
     }
+    else
+    {
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Verwijderen" class="btn btn-default" />
+                @* laten zien dat groep nog niet leeg is. niet kan verwijderen*@
+               
+            </div>
+        }
+    }
+  
+}
+else
+{
+    @Html.Raw("Niet de rechten!")
+}
+    @Html.ActionLink("Terug", "Index")
 </div>

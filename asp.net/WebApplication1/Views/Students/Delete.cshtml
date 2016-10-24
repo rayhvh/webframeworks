@@ -43,22 +43,23 @@
             @Html.DisplayFor(model => model.Hobby)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PictureURL)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PictureURL)
-        </dd>
 
     </dl>
-
-    @using (Html.BeginForm()) {
+@if (Session["Role"].Equals("Student"))
+{
+    @Html.Raw("Je mag als student geen student verwijderen!")
+}
+else if (Session["Role"].Equals("Teacher"))
+{
+    using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
         </div>
     }
+   
+}
+    @Html.ActionLink("Back to List", "Index")
 </div>

@@ -7,9 +7,10 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (Session["Role"].Equals("Teacher"))
+{
+    @Html.ActionLink("Nieuwe student", "Create")
+}
 <table class="table">
     <tr>
         <th>
@@ -24,9 +25,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Hobby)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PictureURL)
-        </th>
+
         <th></th>
     </tr>
 
@@ -44,13 +43,25 @@
         <td>
             @Html.DisplayFor(modelItem => item.Hobby)
         </td>
+
         <td>
-            @Html.DisplayFor(modelItem => item.PictureURL)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) 
+
+            @if (Session["Role"].Equals("Student"))
+            {
+                if (item.FirstMidName == User.Identity.Name)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+                }
+                //else niks
+            }
+            @if (Session["Role"].Equals("Teacher"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                @Html.Raw(" ")
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            }
+           
         </td>
     </tr>
 }

@@ -226,6 +226,10 @@
     <Compile Include="Migrations\201610181259527_passwords.Designer.cs">
       <DependentUpon>201610181259527_passwords.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610241818181_hebergeenzinmeerin.cs" />
+    <Compile Include="Migrations\201610241818181_hebergeenzinmeerin.Designer.cs">
+      <DependentUpon>201610241818181_hebergeenzinmeerin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -342,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610181259527_passwords.resx">
       <DependentUpon>201610181259527_passwords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610241818181_hebergeenzinmeerin.resx">
+      <DependentUpon>201610241818181_hebergeenzinmeerin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

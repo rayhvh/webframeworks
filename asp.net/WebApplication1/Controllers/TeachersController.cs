@@ -84,6 +84,8 @@ namespace Smoelenboek.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.SchoolGroupId = new SelectList(db.SchoolGroups, "Id", "GroupName"); // schoolgroep id is een lijst van schoolgroepen uit db met id en naam
+            ViewBag.AllGroups = db.SchoolGroups.ToList(); // alle groepen is schoolgroepenen uit db naar lijst.. compleet?
             return View(teacher);
         }
 
@@ -92,10 +94,23 @@ namespace Smoelenboek.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,LastName,FirstMidName,Hobby,PictureURL")] Teacher teacher)
+        public ActionResult Edit([Bind(Include = "Id,LastName,FirstMidName,Hobby,Password")] Teacher teacher, List<int> schoolgroupIds)
         {
             if (ModelState.IsValid)
             {
+                //teacher.SchoolGroups = new List<SchoolGroup>(); 
+                //foreach (var group in schoolgroupIds) 
+                //{
+                //    var dbGroup = db.SchoolGroups.Find(group); //  
+                   
+                //    var oudegroepen = teacher.SchoolGroups; // probeer oude groepen op te halen? lukt niet... gekut. 
+                //    foreach (var oudegroep in oudegroepen) // elke oude groep verwijderen
+                //    {
+                //        teacher.SchoolGroups.Remove(oudegroep);
+                //    }
+                //    teacher.SchoolGroups.Add(dbGroup);  // nieuwe groepen uit post toevoegen...
+                //}
+
                 db.Entry(teacher).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

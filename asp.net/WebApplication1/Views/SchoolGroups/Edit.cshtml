@@ -5,8 +5,9 @@
 }
 
 <h2>Bewerken</h2>
-
-@using (Html.BeginForm())
+@if (Session["Role"].Equals("Teacher"))
+{
+ using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
@@ -30,6 +31,11 @@
             </div>
         </div>
     </div>
+    }
+}
+else
+{
+    @Html.Raw("geen rechten!!")
 }
 
 <div>

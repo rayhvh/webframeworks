@@ -1,15 +1,16 @@
 ﻿@model Smoelenboek.Models.Teacher
-
+@using Smoelenboek.Models;
 @{
     ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
-
-@using (Html.BeginForm())
+@if ( Session["Role"].Equals("Teacher"))
+{
+  using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Teacher</h4>
         <hr />
@@ -33,6 +34,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.Hobby, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Hobby, new { htmlAttributes = new { @class = "form-control" } })
@@ -40,11 +49,24 @@
             </div>
         </div>
 
+
         <div class="form-group">
-            @Html.LabelFor(model => model.PictureURL, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SchoolGroups, "SchoolGroup", htmlAttributes: new { @class = "control-label col-md-2" })  <!-- gebruikt schoolgroep modelen haalt naam eruit? label-->
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PictureURL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PictureURL, "", new { @class = "text-danger" })
+
+                @*@{ var i = 0; }*@
+                @foreach (var group in ViewBag.AllGroups as IEnumerable<SchoolGroup>)
+                {
+                    // gebruikt viewbag allgroeps defineerd als schoolgroepen en  name is schoolgroep id. waarde is groeps idee. en html is groep naam.
+
+                    <label>
+
+                        <input type="checkbox" name="SchoolGroupIds" value="@group.Id" /> @group.GroupName
+
+                        @*<input type="hidden" name="SchoolGroups[@(i++)].Id" value="@group.Id" />*@
+                    </label> <br />
+                }
+
             </div>
         </div>
 
@@ -54,8 +76,12 @@
             </div>
         </div>
     </div>
+    }
 }
-
+else
+{
+    @Html.Raw("Je mag geen edits doen je hebt niet de rechten.")
+}
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

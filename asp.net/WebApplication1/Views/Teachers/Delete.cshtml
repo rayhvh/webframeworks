@@ -35,22 +35,24 @@
             @Html.DisplayFor(model => model.Hobby)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PictureURL)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PictureURL)
-        </dd>
 
     </dl>
-
-    @using (Html.BeginForm()) {
+@if (Session["Role"].Equals("Teacher") & Model.FirstMidName != User.Identity.Name )
+{
+    using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+         
         </div>
     }
+}
+else
+{
+    @Html.Raw("Je mag niet deleten je hebt niet de rechten.")
+}
+    @Html.ActionLink("Back to List", "Index")
 </div>

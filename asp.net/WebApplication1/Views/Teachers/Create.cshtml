@@ -6,73 +6,82 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm())
+@if (Session["Role"].Equals("Teacher"))
 {
-    @Html.AntiForgeryToken()
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Teacher</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            <h4>Teacher</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstMidName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FirstMidName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstMidName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Hobby, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Hobby, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Hobby, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <!--oproepen een lijst met mogelijk klassen in een meer naar meer relatie en deze ook zo opslaan-->
+            <div class="form-group">
+                @Html.LabelFor(model => model.SchoolGroups, "SchoolGroup", htmlAttributes: new { @class = "control-label col-md-2" })  <!-- gebruikt schoolgroep modelen haalt naam eruit? label-->
+                <div class="col-md-10">
+
+
+                    @foreach (var group in ViewBag.AllGroups as IEnumerable<SchoolGroup>)
+                    {
+                        // gebruikt viewbag allgroeps defineerd als schoolgroepen en  name is schoolgroep id. waarde is groeps idee. en html is groep naam.
+
+                        <label>
+
+                            <input type="checkbox" name="SchoolGroupIds" value="@group.Id" /> @group.GroupName
+
+
+                        </label> <br />
+                    }
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstMidName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstMidName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FirstMidName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Hobby, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Hobby, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Hobby, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PictureURL, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PictureURL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PictureURL, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <!--oproepen een lijst met mogelijk klassen in een meer naar meer relatie en deze ook zo opslaan-->
-        <div class="form-group">
-            @Html.LabelFor(model => model.SchoolGroups, "SchoolGroup", htmlAttributes: new { @class = "control-label col-md-2" })  <!-- gebruikt schoolgroep modelen haalt naam eruit? label-->
-            <div class="col-md-10">
-            
-                @{ var i = 0; }
-                @foreach (var group in ViewBag.AllGroups as IEnumerable<SchoolGroup>) 
-                {
-                    // gebruikt viewbag allgroeps defineerd als schoolgroepen en  name is schoolgroep id. waarde is groeps idee. en html is groep naam. 
-
-                    <label> 
-               
-                <input type="checkbox" name="SchoolGroupIds" value="@group.Id" /> @group.GroupName
-
-                        @*<input type="hidden" name="SchoolGroups[@(i++)].Id" value="@group.Id" />*@
-                 </label> <br />
-                }
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+    }
 }
+else
+{
+    @Html.Raw("je mag geen docent aanmaken")
+}
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")

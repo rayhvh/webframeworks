@@ -50,7 +50,7 @@ namespace Smoelenboek.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,LastName,FirstMidName,SchoolGroupId,Hobby,PictureURL")] Student student)
+        public ActionResult Create([Bind(Include = "Id,LastName,FirstMidName,SchoolGroupId,Hobby,Password")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace Smoelenboek.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,LastName,FirstMidName,SchoolGroupId,Hobby,PictureURL")] Student student)
+        public ActionResult Edit([Bind(Include = "Id,LastName,FirstMidName,SchoolGroupId,Hobby,Password")] Student student)
         {
             if (ModelState.IsValid)
             {

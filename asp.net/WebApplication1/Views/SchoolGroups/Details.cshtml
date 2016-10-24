@@ -25,17 +25,18 @@
         <dt>
             Je groep bevat:
         </dt>
-@foreach (var item in Model.Students)
-{
-
-     
+        @foreach (var item in Model.Students)
+        {  
+                    <dd>
+                      Student:   @(item.FirstMidName)     
+                    </dd>    
+        }
+        @foreach (var item in Model.Teachers)
+        {
             <dd>
-                @(item.FirstMidName)
-                }
-                @* Wat de fuck.... hoe fix ik dat ik studenten krijg die bij een groep horen hier. *@
+             Docent:    @(item.FirstMidName)
             </dd>
-        
-}
+        }
 
 </dl>
 </div>

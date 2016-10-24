@@ -104,7 +104,9 @@ namespace Smoelenboek.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SchoolGroup schoolGroup = db.SchoolGroups.Find(id);
+            SchoolGroup schoolGroup = db.SchoolGroups
+               .Include(gs => gs.Students)
+               .Include(gt => gt.Teachers).Single(t => t.Id == id); 
             if (schoolGroup == null)
             {
                 return HttpNotFound();
@@ -117,9 +119,21 @@ namespace Smoelenboek.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SchoolGroup schoolGroup = db.SchoolGroups.Find(id);
-            db.SchoolGroups.Remove(schoolGroup);
-            db.SaveChanges();
+                SchoolGroup schoolGroup = db.SchoolGroups
+               .Include(gs => gs.Students) 
+               .Include(gt => gt.Teachers).Single(t => t.Id == id); 
+                if (schoolGroup.Teachers != null | schoolGroup.Students != null)
+                {
+                // je zou hier niet kunnen komen zonder de html te editen en daarom is er in principe geen error melding nodig. we doen gewoon niet een groep weghalen als er nog iets inzit.
+                 }
+                else
+            {
+                db.SchoolGroups.Remove(schoolGroup);
+                db.SaveChanges();
+            }
+
+          
+            
             return RedirectToAction("Index");
         }
 

@@ -24,7 +24,7 @@ namespace Smoelenboek.Models
         public virtual SchoolGroup SchoolGroup { get; set; }
 
         public string Hobby { get; set; }
-        public string PictureURL { get; set; }
+   
 
     }
 }
