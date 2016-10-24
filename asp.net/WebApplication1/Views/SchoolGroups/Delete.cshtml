@@ -25,8 +25,12 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" />
-@* okeyyy... how about delete text duurrrr*@
+            <input type="submit" value="Verwijderen" class="btn btn-default" />
+@* laten zien dat groep nog niet leeg is. niet kan verwijderen*@
+
+            @*@Model.Teachers.Count*@
+
+
             @Html.ActionLink("Terug", "Index")
         </div>
     }

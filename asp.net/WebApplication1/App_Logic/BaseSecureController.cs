@@ -33,6 +33,7 @@ namespace Smoelenboek.App_Logic
 
                     // redirect to error page... by setting the result
                     filterContext.Result = RedirectToAction("Unauthorized", "Access");
+
                 }
 
                 // else we do nothing, meaning you are allowed to continue..
@@ -62,7 +63,7 @@ namespace Smoelenboek.App_Logic
             {
                 if (httpContext.Session["Role"].Equals("Student"))
                 {
-
+                   
                     return true;
                 }
                 else if (httpContext.Session["Role"].Equals("Teacher"))

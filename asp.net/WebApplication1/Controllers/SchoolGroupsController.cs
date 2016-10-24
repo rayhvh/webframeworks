@@ -32,12 +32,14 @@ namespace Smoelenboek.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SchoolGroup schoolGroup = db.SchoolGroups.Find(id);
+            SchoolGroup schoolGroup = db.SchoolGroups
+               .Include(gs => gs.Students) // lazy load staat uit door virtual / config. include nu complete students en teacher data? 
+               .Include(gt => gt.Teachers).Single(t => t.Id == id);
+
             if (schoolGroup == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.StudentName = db.Students;
             return View(schoolGroup);
         }
 

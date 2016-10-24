@@ -25,17 +25,16 @@
         <dt>
             Je groep bevat:
         </dt>
-@foreach (var item in ViewBag.StudentName)
+@foreach (var item in Model.Students)
 {
 
-        @(item.GroupName == @Html.DisplayFor(model => model.GroupName))
-        {
+     
             <dd>
                 @(item.FirstMidName)
                 }
                 @* Wat de fuck.... hoe fix ik dat ik studenten krijg die bij een groep horen hier. *@
             </dd>
-        }
+        
 }
 
 </dl>
