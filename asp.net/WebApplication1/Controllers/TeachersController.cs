@@ -17,10 +17,15 @@ namespace Smoelenboek.Controllers
         private SmoelenboekContext db = new SmoelenboekContext();
 
         // GET: Teachers
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            // afvangen van rechten???? daarop view aanpassen? login systeem? 
-            return View(db.Teachers.ToList());
+            var teachers = from t in db.Teachers select t;// db.Teachers.ToList();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                teachers = teachers.Where(s => s.FirstMidName.Contains(searchString));
+            }
+
+            return View(teachers);
         }
 
         // GET: Teachers/Details/5
