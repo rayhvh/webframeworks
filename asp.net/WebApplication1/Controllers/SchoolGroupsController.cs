@@ -17,12 +17,16 @@ namespace Smoelenboek.Controllers
         private SmoelenboekContext db = new SmoelenboekContext();
 
         // GET: SchoolGroups
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
+
+
             return View(db.SchoolGroups
-               .Include(gs => gs.Students) // lazy load staat uit door virtual / config. include nu complete students en teacher data? 
+               .Include(gs => gs.Students) // lazy load staat uit door virtual / config. 
                .Include(gt => gt.Teachers)
                 .ToList());
+            // editen voor search zie students en teachers
+            // searchen 
         }
 
         // GET: SchoolGroups/Details/5

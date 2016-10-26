@@ -7,6 +7,14 @@
 <h2>Index</h2>
 
 <p>
+    @using (Html.BeginForm("Index", "Teachers", FormMethod.Get))
+    {
+    <p>
+       @Html.TextBox("SearchString") <br />
+        <input type="submit" value="Zoeken" />
+    </p>
+    }
+    
 @if (Session["Role"].Equals("Teacher"))
 {
     @Html.ActionLink("Nieuwe Leraar", "Create")

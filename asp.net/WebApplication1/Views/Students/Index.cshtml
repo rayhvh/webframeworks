@@ -6,7 +6,13 @@
 }
 
 <h2>Index</h2>
-
+@using (Html.BeginForm("Index", "Students", FormMethod.Get))
+{
+    <p>
+        @Html.TextBox("SearchString") <br />
+        <input type="submit" value="Zoeken" />
+    </p>
+}
 @if (Session["Role"].Equals("Teacher"))
 {
     @Html.ActionLink("Nieuwe student", "Create")

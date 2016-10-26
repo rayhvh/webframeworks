@@ -13,7 +13,7 @@ namespace Smoelenboek.Models
       //  [Required]
         public  ICollection<Student> Students { get; set; } //virtual uitzetten voor eager loading ipv lazy loading.
        // [Required]
-        public   ICollection<Teacher> Teachers { get; set; }
+        public  ICollection<Teacher> Teachers { get; set; }
 
     }
 }

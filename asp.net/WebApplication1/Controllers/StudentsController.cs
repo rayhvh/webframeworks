@@ -17,10 +17,17 @@ namespace Smoelenboek.Controllers
         private SmoelenboekContext db = new SmoelenboekContext();
 
         // GET: Students
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             var students = db.Students.Include(s => s.SchoolGroup);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = db.Students.Where(s => s.FirstMidName.Contains(searchString) || s.Hobby.Contains(searchString)).Include(s => s.SchoolGroup);
+            }
+
             return View(students.ToList());
+            // var students = db.Students.Include(s => s.SchoolGroup);
+            // return View(students.ToList());
         }
 
         // GET: Students/Details/5

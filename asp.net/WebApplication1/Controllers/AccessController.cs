@@ -1,4 +1,4 @@
-﻿using AuthenticationTest.ViewModels;
+﻿using Smoelenboek.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Smoelenboek.Models;
 
-namespace AuthenticationTest.Controllers
+namespace Smoelenboek.Controllers
 {
     public class AccessController : Controller
     {
@@ -52,9 +52,10 @@ namespace AuthenticationTest.Controllers
                 // moment on we are 'authenticated' .net style. (note that you could
                 // pass any string into the username argument. Including a database Id..
                 FormsAuthentication.SetAuthCookie(data.Username, true);
-
+               
                 // optional: set something in the session to determine different roles (e.g. administrator or user).
                 Session["Role"] = "Student";
+                Session["Id"] = ingelogtestudent.FirstOrDefault().Id;
                 return RedirectToAction("Index", "Students");
             }
 
@@ -63,6 +64,7 @@ namespace AuthenticationTest.Controllers
             {
                 FormsAuthentication.SetAuthCookie(data.Username, true);
                 Session["Role"] = "Teacher";
+                Session["Id"] = ingelogteteacher.FirstOrDefault().Id;
                 return RedirectToAction("Index", "Teachers");
             }
 

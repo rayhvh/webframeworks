@@ -7,22 +7,29 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
+@if (Session["Role"] != null)
+{
+    if (Session["Role"].Equals("Teacher"))
+    {
+        var rol = "Teachers";
+        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!",
+                       "Edit",
+                       rol,
+                       new { id = Session["Id"] },
+                       htmlAttributes: new { title = "docenten" })
+    }
+    else if (Session["Role"].Equals("Student"))
+    {
+        var rol = "Students";
+        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Edit", rol, routeValues: new { id = Session["Id"] }, htmlAttributes: new { title = "studenten" })
+    }
+    else
+    {
 
-            @*@if (Session["Role"].Equals("Teacher"))
-            {
-                var rol = "Teachers";
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Edit", rol, new { id = User.Identity.GetUserId() }, htmlAttributes: new { title = "docenten" })
-            }
-            else if (Session["Role"].Equals("Student"))
-            {
-                var rol = "Students";
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Edit", rol, routeValues: null, htmlAttributes: new { title = "studenten" })
-            }
-            else
-            {
-                
-            }*@
-            @* dirty solutions incorperated *@
+    }
+    @* dirty solutions incorperated *@
+}
+         
         </li>
         <li>@Html.ActionLink("Uitloggen", "Logout", "Access")</li>
     </ul>

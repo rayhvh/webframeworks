@@ -19,10 +19,10 @@ namespace Smoelenboek.Controllers
         // GET: Teachers
         public ActionResult Index(string searchString)
         {
-            var teachers = from t in db.Teachers select t;// db.Teachers.ToList();
+            var teachers = db.Teachers.ToList();
             if (!String.IsNullOrEmpty(searchString))
             {
-                teachers = teachers.Where(s => s.FirstMidName.Contains(searchString));
+                teachers = db.Teachers.Where(s => s.FirstMidName.Contains(searchString) || s.Hobby.Contains(searchString)).ToList();
             }
 
             return View(teachers);
@@ -99,22 +99,25 @@ namespace Smoelenboek.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,LastName,FirstMidName,Hobby,Password")] Teacher teacher, List<int> schoolgroupIds)
+        public ActionResult Edit( Teacher teacher, List<int> schoolgroupIds)
         {
             if (ModelState.IsValid)
             {
-                //teacher.SchoolGroups = new List<SchoolGroup>(); 
-                //foreach (var group in schoolgroupIds) 
-                //{
-                //    var dbGroup = db.SchoolGroups.Find(group); //  
-                   
-                //    var oudegroepen = teacher.SchoolGroups; // probeer oude groepen op te halen? lukt niet... gekut. 
-                //    foreach (var oudegroep in oudegroepen) // elke oude groep verwijderen
-                //    {
-                //        teacher.SchoolGroups.Remove(oudegroep);
-                //    }
-                //    teacher.SchoolGroups.Add(dbGroup);  // nieuwe groepen uit post toevoegen...
-                //}
+                teacher.SchoolGroups = new List<SchoolGroup>();
+                foreach (var group in schoolgroupIds)
+                {
+                    SchoolGroup sg = db.SchoolGroups.Where(s => s.Id == group).FirstOrDefault();
+                    teacher.SchoolGroups.Add(sg);
+
+                    //var dbGroup = db.SchoolGroups.Find(group); //  
+
+                    //var oudegroepen = teacher.SchoolGroups; // probeer oude groepen op te halen? lukt niet... gekut. 
+                    //foreach (var oudegroep in oudegroepen) // elke oude groep verwijderen
+                    //{
+                    //    teacher.SchoolGroups.Remove(oudegroep);
+                    //}
+                    //teacher.SchoolGroups.Add(dbGroup);  // nieuwe groepen uit post toevoegen...
+                }
 
                 db.Entry(teacher).State = EntityState.Modified;
                 db.SaveChanges();
