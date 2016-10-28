@@ -25,6 +25,6 @@ namespace Smoelenboek.Models
 
         public string Hobby { get; set; }
    
-
+        public bool VIP { get; set; }
     }
 }

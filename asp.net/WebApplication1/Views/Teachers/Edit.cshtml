@@ -61,7 +61,9 @@
 
                     <label>
 
-                        <input type="checkbox" name="SchoolGroupIds" value="@group.Id" /> @group.GroupName
+                        <input type="checkbox" name="SchoolGroupIds"
+                                @if (Model.SchoolGroups.Any(t=>t.Id == group.Id)) {<text>checked="checked"</text> }
+                                 value="@group.Id" /> @group.GroupName
 
                         @*<input type="hidden" name="SchoolGroups[@(i++)].Id" value="@group.Id" />*@
                     </label> <br />

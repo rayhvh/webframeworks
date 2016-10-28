@@ -13,10 +13,14 @@
         <p>
           Nog geen account? Vraag je docent naar de gegevens!
     </div>
-    <div class="col-md-4">
-        <h2>Login</h2>
-        <p>Al een account?.</p>
-        <p>@Html.ActionLink("Log in", "Login", "Access", null, new { @class = "btn btn-default" })</p>
-    </div>
+    @if (Session["Role"] == null)
+    {
+        <div class="col-md-4">
+            <h2>Login</h2>
+            <p>Al een account?.</p>
+            <p>@Html.ActionLink("Log in", "Login", "Access", null, new { @class = "btn btn-default" })</p>
+        </div>
+    }
+    
   
 </div>

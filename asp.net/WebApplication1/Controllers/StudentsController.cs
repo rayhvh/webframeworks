@@ -22,6 +22,7 @@ namespace Smoelenboek.Controllers
             var students = db.Students.Include(s => s.SchoolGroup);
             if (!String.IsNullOrEmpty(searchString))
             {
+                
                 students = db.Students.Where(s => s.FirstMidName.Contains(searchString) || s.Hobby.Contains(searchString)).Include(s => s.SchoolGroup);
             }
 
@@ -127,6 +128,22 @@ namespace Smoelenboek.Controllers
             db.Students.Remove(student);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        //[HttpPost, ActionName("VIP")]
+        public JsonResult VIP(int id, string set)
+        {
+            Student student = db.Students.Find(id);
+            if (set == "on")
+            {
+                student.VIP = true;
+            }
+            else
+            {
+                student.VIP = false;
+            }
+            db.SaveChanges();
+            return null;
         }
 
         protected override void Dispose(bool disposing)

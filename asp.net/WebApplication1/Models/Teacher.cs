@@ -13,6 +13,6 @@ namespace Smoelenboek.Models
         public string Password { get; set; }
         public virtual ICollection<SchoolGroup> SchoolGroups { get; set; } //meervoud als je er meer hebt?
         public string Hobby { get; set; }
-      
+        public bool VIP { get; set; }
     }
 }

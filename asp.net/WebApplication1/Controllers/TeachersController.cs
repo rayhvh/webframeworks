@@ -84,7 +84,7 @@ namespace Smoelenboek.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Teacher teacher = db.Teachers.Find(id);
+            var teacher = db.Teachers.Include(t => t.SchoolGroups).Single(t => t.Id == id);
             if (teacher == null)
             {
                 return HttpNotFound();
@@ -101,25 +101,23 @@ namespace Smoelenboek.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit( Teacher teacher, List<int> schoolgroupIds)
         {
-            if (ModelState.IsValid)
+            var dbTeacher = db.Teachers.Include(t => t.SchoolGroups).Single(t => t.Id == teacher.Id);
+            if (TryUpdateModel(dbTeacher))
             {
-                teacher.SchoolGroups = new List<SchoolGroup>();
-                foreach (var group in schoolgroupIds)
+                dbTeacher.SchoolGroups.Clear();
+                //   teacher.SchoolGroups = new List<SchoolGroup>();
+                if (schoolgroupIds != null)
                 {
-                    SchoolGroup sg = db.SchoolGroups.Where(s => s.Id == group).FirstOrDefault();
-                    teacher.SchoolGroups.Add(sg);
-
-                    //var dbGroup = db.SchoolGroups.Find(group); //  
-
-                    //var oudegroepen = teacher.SchoolGroups; // probeer oude groepen op te halen? lukt niet... gekut. 
-                    //foreach (var oudegroep in oudegroepen) // elke oude groep verwijderen
-                    //{
-                    //    teacher.SchoolGroups.Remove(oudegroep);
-                    //}
-                    //teacher.SchoolGroups.Add(dbGroup);  // nieuwe groepen uit post toevoegen...
+                    foreach (var group in schoolgroupIds)
+                    {
+                        // dit is een extra db query per foreach lus... is niet mooi natuurlijk, maar werkt wel
+                        // als je tijd hebt mag je nadenken hoe dit mooier kan :P
+                        SchoolGroup sg = db.SchoolGroups.Where(s => s.Id == group).FirstOrDefault();
+                        dbTeacher.SchoolGroups.Add(sg);
+                    }
                 }
 
-                db.Entry(teacher).State = EntityState.Modified;
+               
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -150,6 +148,21 @@ namespace Smoelenboek.Controllers
             db.Teachers.Remove(teacher);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public JsonResult VIP(int id, string set)
+        {
+            Teacher teacher = db.Teachers.Find(id);
+            if (set == "on")
+            {
+                teacher.VIP = true;
+            }
+            else
+            {
+                teacher.VIP = false;
+            }
+            db.SaveChanges();
+            return null;
         }
 
         protected override void Dispose(bool disposing)

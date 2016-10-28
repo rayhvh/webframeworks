@@ -4,7 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Smoelenboek</title>
+    @Scripts.Render("http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+    @Scripts.Render("~/Scripts/bootstrap-switch.js")
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrap-switch.css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -40,6 +43,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    
+    
     @RenderSection("scripts", required: false)
 </body>
 </html>

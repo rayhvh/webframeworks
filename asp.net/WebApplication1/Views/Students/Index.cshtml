@@ -36,7 +36,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr id="row @item.Id" @if (item.VIP == true) {    @Html.Raw("bgcolor='lightgreen'")}>
         <td>
             @Html.DisplayFor(modelItem => item.SchoolGroup.GroupName)
         </td>
@@ -51,21 +51,41 @@
         </td>
 
         <td>
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) 
+            @Html.ActionLink("Details.", "Details", new { id = item.Id }) 
 
             @if (Session["Role"].Equals("Student"))
             {
                 if (item.FirstMidName == User.Identity.Name)
                 {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+                    @Html.ActionLink("Edit.", "Edit", new { id = item.Id }) 
                 }
                 //else niks
             }
             @if (Session["Role"].Equals("Teacher"))
             {
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                @Html.ActionLink("Edit.", "Edit", new { id = item.Id })
                 @Html.Raw(" ")
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Delete.", "Delete", new { id = item.Id })
+                @Html.Raw(" VIP:")
+                <input type="checkbox" class="switch" name="box @item.Id" data-size="mini" id="@item.Id" checked="@item.VIP" value="@item.VIP"/>
+                <script>
+                    $("[name='box @item.Id']").bootstrapSwitch();
+
+                    $('input[name="box @item.Id"]').on('switchChange.bootstrapSwitch', function(event, state) {
+                      
+                        $.ajax({
+                            type: "POST",
+                            ContentType: 'application/json',
+                            url: '@Url.Action("VIP", "Students")',
+                            data: { id: @item.Id, set: $("#@item.Id").val()},
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                alert(XMLHttpRequest.responseText);
+                            }
+                        });
+                        
+                    });
+
+                </script>
             }
            
         </td>
@@ -73,3 +93,11 @@
 }
 
 </table>
+@*<style>
+
+
+    .blue {
+        color: blue;
+    }
+</style>*@
+@*$("row @item.Id").addClass("blue");*@

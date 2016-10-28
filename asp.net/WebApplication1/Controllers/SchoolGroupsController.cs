@@ -20,11 +20,18 @@ namespace Smoelenboek.Controllers
         public ActionResult Index(string searchString)
         {
 
-
-            return View(db.SchoolGroups
-               .Include(gs => gs.Students) // lazy load staat uit door virtual / config. 
-               .Include(gt => gt.Teachers)
-                .ToList());
+            var schoolgroups = db.SchoolGroups.Include(gs => gs.Students)
+               .Include(gt => gt.Teachers);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                schoolgroups = db.SchoolGroups.Where(s => s.GroupName.Contains(searchString)).Include(gs => gs.Students)
+               .Include(gt => gt.Teachers); // add search students / teachers
+            }
+            return View(schoolgroups.ToList());
+            //return View(db.SchoolGroups
+            //   .Include(gs => gs.Students) // lazy load staat uit door virtual / config. 
+            //   .Include(gt => gt.Teachers)
+            //    .ToList());
             // editen voor search zie students en teachers
             // searchen 
         }
